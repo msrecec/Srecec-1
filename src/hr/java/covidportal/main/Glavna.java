@@ -21,6 +21,27 @@ public class Glavna {
 
         // Unos Zupanija
 
+        unosZupanija(input, zupanije);
+
+        // Unos Simptoma
+
+        unosSimptoma(input, simptomi);
+
+        // Unos Bolesti
+
+        unosBolesti(input, simptomi, bolesti);
+
+        // Unos osoba
+
+        unosOsoba(input, zupanije, bolesti, osobe);
+
+        // Ispis osoba
+
+        ispisOsoba(osobe);
+
+    }
+
+    private static void unosZupanija(Scanner input, Zupanija[] zupanije) {
         String nazivZupanije;
         int brojStanovnika;
 
@@ -36,9 +57,9 @@ public class Glavna {
             zupanije[i] = new Zupanija(nazivZupanije, brojStanovnika);
 
         }
+    }
 
-        // Unos Simptoma
-
+    private static void unosSimptoma(Scanner input, Simptom[] simptomi) {
         String nazivSimptoma;
         String vrijednostSimptoma;
 
@@ -52,7 +73,7 @@ public class Glavna {
                 System.out.printf("Unesite vrijednost simptoma(%s, %s, %s): ", Simptom.RIJETKO, Simptom.SREDNJE, Simptom.CESTO);
                 vrijednostSimptoma = input.nextLine();
 
-                // if(!vrijednostSimptoma.in([RIJETKO, SREDNJE, CESTO])) Provjera pojave vrijednosti simptoma
+                // if(!vrijednostSimptoma.in([RIJETKO, SREDNJE, CESTO])) Provjera pojave vrijednosti simptoma analogno IN Operatoru u SQL
 
                 if (!Arrays.asList(Simptom.RIJETKO, Simptom.SREDNJE, Simptom.CESTO).contains(vrijednostSimptoma)) {
                     System.out.println("Pogrešan unos simptoma !");
@@ -63,9 +84,9 @@ public class Glavna {
             simptomi[i] = new Simptom(nazivSimptoma, vrijednostSimptoma);
 
         }
+    }
 
-        // Unos Bolesti
-
+    private static void unosBolesti(Scanner input, Simptom[] simptomi, Bolest[] bolesti) {
         String nazivBolesti;
         int brojOdabranihSimptoma, odabraniSimptom;
         int[] odabraniSimptomi;
@@ -142,9 +163,17 @@ public class Glavna {
             }
             bolesti[i] = new Bolest(nazivBolesti, kopiraniSimptomi);
         }
+    }
 
-        // Unos osoba
+    private static void ispisOsoba(Osoba[] osobe) {
+        System.out.println("Popis osoba:");
 
+        for (Osoba osoba : osobe) {
+            System.out.print(osoba.toString());
+        }
+    }
+
+    private static void unosOsoba(Scanner input, Zupanija[] zupanije, Bolest[] bolesti, Osoba[] osobe) {
         boolean duplikatiOsoba = false;
         int odabranaZupanija;
         int odabranaBolest;
@@ -310,15 +339,6 @@ public class Glavna {
             brojKontaktiranihOsoba = 0;
             kontaktiraneOsobe = null;
         }
-
-        // Ispis osoba
-
-        System.out.println("Popis osoba:");
-
-        for (Osoba osoba : osobe) {
-            System.out.print(osoba.toString());
-        }
-
     }
 }
 
