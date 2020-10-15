@@ -1,11 +1,23 @@
 package hr.java.covidportal.model;
 
+import java.util.Arrays;
+import java.util.Objects;
+
 public class Osoba {
     private String ime, prezime;
     private Integer starost;
     private Zupanija zupanija;
     private Bolest zarazenBolescu;
     private Osoba[] kontaktiraneOsobe;
+
+    public Osoba(String ime, String prezime, Integer starost, Zupanija zupanija, Bolest zarazenBolescu) {
+        this.ime = ime;
+        this.prezime = prezime;
+        this.starost = starost;
+        this.zupanija = zupanija;
+        this.zarazenBolescu = zarazenBolescu;
+        this.kontaktiraneOsobe = null;
+    }
 
     public Osoba(String ime, String prezime, Integer starost, Zupanija zupanija, Bolest zarazenBolescu, Osoba[] kontaktiraneOsobe) {
         this.ime = ime;
@@ -14,6 +26,27 @@ public class Osoba {
         this.zupanija = zupanija;
         this.zarazenBolescu = zarazenBolescu;
         this.kontaktiraneOsobe = kontaktiraneOsobe;
+    }
+
+    @Override
+    public String toString() {
+
+        String ispisKontaktiranihOsoba = "";
+
+        if (Objects.isNull(kontaktiraneOsobe)) {
+            ispisKontaktiranihOsoba = "Nema kontaktiranih osoba.\n";
+        } else {
+            for (Osoba kontaktiranaOsoba : kontaktiraneOsobe) {
+                ispisKontaktiranihOsoba += kontaktiranaOsoba.getIme() + " " + kontaktiranaOsoba.getPrezime() + "\n";
+            }
+        }
+
+
+        return "Ime i prezime: " + ime + " " + prezime + "\n" +
+                "Starost: " + starost + "\n" +
+                "Županija prebivališta: " + zupanija.getNaziv() + "\n" +
+                "Zaražen bolešću: " + zarazenBolescu.getNaziv() + "\n" +
+                "Kontaktirane osobe: \n" + ispisKontaktiranihOsoba;
     }
 
     public String getIme() {

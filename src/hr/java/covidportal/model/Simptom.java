@@ -3,7 +3,7 @@ package hr.java.covidportal.model;
 import java.util.Objects;
 
 public class Simptom {
-    public static final String RIJETKO = "RIJETKO", SREDNJE = "SREDNJE", CESTO = "CESTO";
+    public static final String RIJETKO = "RIJETKO", SREDNJE = "SREDNJE", CESTO = "ČESTO";
     private String naziv, vrijednost;
 
     public Simptom(String naziv, String vrijednost) {
