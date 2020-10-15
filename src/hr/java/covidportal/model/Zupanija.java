@@ -1,4 +1,4 @@
-package main.java.hr.java.covidportal.model;
+package hr.java.covidportal.model;
 
 public class Zupanija {
     private String naziv;

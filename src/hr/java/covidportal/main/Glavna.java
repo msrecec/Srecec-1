@@ -1,4 +1,9 @@
-package main.java.hr.java.covidportal.model;
+package hr.java.covidportal.main;
+
+import hr.java.covidportal.model.Bolest;
+import hr.java.covidportal.model.Osoba;
+import hr.java.covidportal.model.Simptom;
+import hr.java.covidportal.model.Zupanija;
 
 import java.util.Arrays;
 import java.util.Scanner;
@@ -6,20 +11,20 @@ import java.util.Scanner;
 public class Glavna {
     public static final int BROJ_ZUPANIJA = 3, BROJ_SIMPTOMA = BROJ_ZUPANIJA, BROJ_BOLESTI = BROJ_ZUPANIJA, BROJ_OSOBA = BROJ_ZUPANIJA;
 
-    //Integer.parseInt(input.nextLine());
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         Zupanija[] zupanije = new Zupanija[BROJ_ZUPANIJA];
         Simptom[] simptomi = new Simptom[BROJ_SIMPTOMA];
         Bolest[] bolesti = new Bolest[BROJ_BOLESTI];
+        Osoba[] osobe = new Osoba[BROJ_OSOBA];
 
         // Unos Zupanija
 
         String nazivZupanije;
         int brojStanovnika;
 
-        System.out.printf("Unesite podatke o %d zupanije:%n", BROJ_ZUPANIJA);
-        for (int i = 0; i < BROJ_ZUPANIJA; ++i) {
+        System.out.printf("Unesite podatke o %d zupanije:%n", zupanije.length);
+        for (int i = 0; i < zupanije.length; ++i) {
 
             System.out.printf("Unesite naziv zupanije: ");
             nazivZupanije = input.nextLine();
@@ -36,9 +41,9 @@ public class Glavna {
         String nazivSimptoma;
         String vrijednostSimptoma;
 
-        System.out.printf("Unesite podatke o %d simptoma:%n", BROJ_SIMPTOMA);
+        System.out.printf("Unesite podatke o %d simptoma:%n", simptomi.length);
 
-        for (int i = 0; i < BROJ_SIMPTOMA; ++i) {
+        for (int i = 0; i < simptomi.length; ++i) {
             System.out.printf("Unesite naziv simptoma: ");
             nazivSimptoma = input.nextLine();
 
@@ -64,9 +69,9 @@ public class Glavna {
         int[] odabraniSimptomi;
         Simptom[] kopiraniSimptomi;
 
-        System.out.printf("Unesite podatke o %d bolesti:%n", BROJ_BOLESTI);
+        System.out.printf("Unesite podatke o %d bolesti:%n", bolesti.length);
 
-        for (int i = 0; i < BROJ_BOLESTI; ++i) {
+        for (int i = 0; i < bolesti.length; ++i) {
             System.out.printf("Unesite naziv bolesti: ");
             nazivBolesti = input.nextLine();
 
@@ -135,22 +140,26 @@ public class Glavna {
 
         // Unos osoba
 
+        int odabranaZupanija;
+        int odabranaBolest;
+        int odabraneKontaktiraneOsobe;
+        int brojKontaktiranihOsoba;
         String ime, prezime;
         Integer starost;
         Zupanija zupanija;
         Bolest zarazenBolescu;
         Osoba[] kontaktiraneOsobe;
 
-        for(int i = 0; i < BROJ_OSOBA; ++i) {
+        for (int i = 0; i < osobe.length; ++i) {
 
             // Unos imena
 
-            System.out.printf("Unesite ime %d. osobe: ", i+1);
+            System.out.printf("Unesite ime %d. osobe: ", i + 1);
             ime = input.nextLine();
 
             // Unos prezimena
 
-            System.out.printf("Unesite prezime %d. osobe: ", i+1);
+            System.out.printf("Unesite prezime %d. osobe: ", i + 1);
             prezime = input.nextLine();
 
             // Unos starosti
@@ -162,8 +171,78 @@ public class Glavna {
 
             System.out.printf("Unesite zupaniju prebivalista osobe:%n");
 
-        }
+            for (int j = 0; j < zupanije.length; ++j) {
+                System.out.printf("%d. %s%n", j + 1, zupanije[j]);
+            }
 
+            odabranaZupanija = Integer.parseInt(input.nextLine());
+
+            // Provjera ispravnosti unosa Odabrane Zupanije
+
+            if (odabranaZupanija < 1 || odabranaZupanija > zupanije.length) {
+                System.out.println("Pogresan unos zupanije!");
+                i--;
+                continue;
+            }
+
+            // Unos bolesti osobe
+
+            System.out.println("Unesite bolest osobe:");
+
+            for (int j = 0; j < bolesti.length; ++j) {
+                System.out.printf("%d. %s%n", j + 1, bolesti[j]);
+            }
+
+            odabranaBolest = Integer.parseInt(input.nextLine());
+
+            // Provjera ispravnosti unosa Odabrane Bolesti Osobe
+
+            if (odabranaBolest < 1 || odabranaBolest > bolesti.length) {
+                System.out.println("Pogresan unos bolesti!");
+                i--;
+                continue;
+            }
+
+
+            // Provjera osoba s kojim je osoba usla u kontakt u slucaju da nije prva osoba - prva se ne gleda
+
+            if (i > 0) {
+
+                // Unos broja kontaktiranih osoba
+
+                System.out.println("Unesite broj osoba koje su bile u kontaktu s tom osobom:");
+
+                brojKontaktiranihOsoba = Integer.parseInt(input.nextLine());
+
+                // Provjera unosa broja kontaktiranih osoba
+
+                if (brojKontaktiranihOsoba > i || brojKontaktiranihOsoba < 0) {
+                    System.out.println("Greska u unosu broja kontaktiranih osoba");
+                    i--;
+                    continue;
+                }
+
+                if (brojKontaktiranihOsoba > 0) {
+
+                    // Unos Odabrane Kontaktirane Osobe
+
+                    for (int j = 0; j < i; ++j) {
+                        System.out.printf("%d. %s %s%n", j + 1, osobe[j].getIme(), osobe[j].getPrezime());
+                    }
+
+                    odabraneKontaktiraneOsobe = Integer.parseInt(input.nextLine());
+
+                    // Provjera unosa Odabrane Kontaktirane Osobe
+
+                    if (odabraneKontaktiraneOsobe < 1 || odabraneKontaktiraneOsobe >= i) {
+                        System.out.println("Greska pri unosu odabranih kontaktiranih osoba");
+                        i--;
+                        continue;
+                    }
+
+                }
+            }
+        }
     }
 }
 
