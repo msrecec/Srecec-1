@@ -2,9 +2,9 @@ package main.java.hr.java.covidportal.model;
 
 public class Bolest {
     private String naziv;
-    private Simptom simptomi;
+    private Simptom[] simptomi;
 
-    public Bolest(String naziv, Simptom simptomi) {
+    public Bolest(String naziv, Simptom[] simptomi) {
         this.naziv = naziv;
         this.simptomi = simptomi;
     }
@@ -17,11 +17,11 @@ public class Bolest {
         this.naziv = naziv;
     }
 
-    public Simptom getSimptomi() {
+    public Simptom[] getSimptomi() {
         return simptomi;
     }
 
-    public void setSimptomi(Simptom simptomi) {
+    public void setSimptomi(Simptom[] simptomi) {
         this.simptomi = simptomi;
     }
 }
