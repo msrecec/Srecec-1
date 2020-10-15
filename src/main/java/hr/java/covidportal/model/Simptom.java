@@ -1,6 +1,7 @@
-package hr.java.covidportal.model;
+package main.java.hr.java.covidportal.model;
 
 public class Simptom {
+    public static final String RIJETKO = "RIJETKO", SREDNJE = "SREDNJE", CESTO = "CESTO";
     private String naziv, vrijednost;
 
     public Simptom(String naziv, String vrijednost) {

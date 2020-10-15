@@ -1,4 +1,4 @@
-package hr.java.covidportal.model;
+package main.java.hr.java.covidportal.model;
 
 public class Osoba {
     private String ime, prezime;
