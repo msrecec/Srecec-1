@@ -328,16 +328,11 @@ public class Glavna {
                     for (int j = 0; j < odabraneKontaktiraneOsobe.length; ++j) {
                         kontaktiraneOsobe[j] = osobe[odabraneKontaktiraneOsobe[j] - 1];
                     }
+                } else {
+                    kontaktiraneOsobe = null;
                 }
             }
-            if (i == 0 || brojKontaktiranihOsoba == 0) {
-                osobe[i] = new Osoba(ime, prezime, starost, zupanija, zarazenBolescu);
-            } else {
-                osobe[i] = new Osoba(ime, prezime, starost, zupanija, zarazenBolescu, kontaktiraneOsobe);
-            }
-
-            brojKontaktiranihOsoba = 0;
-            kontaktiraneOsobe = null;
+            osobe[i] = new Osoba(ime, prezime, starost, zupanija, zarazenBolescu, kontaktiraneOsobe);
         }
     }
 }

@@ -10,15 +10,6 @@ public class Osoba {
     private Bolest zarazenBolescu;
     private Osoba[] kontaktiraneOsobe;
 
-    public Osoba(String ime, String prezime, Integer starost, Zupanija zupanija, Bolest zarazenBolescu) {
-        this.ime = ime;
-        this.prezime = prezime;
-        this.starost = starost;
-        this.zupanija = zupanija;
-        this.zarazenBolescu = zarazenBolescu;
-        this.kontaktiraneOsobe = null;
-    }
-
     public Osoba(String ime, String prezime, Integer starost, Zupanija zupanija, Bolest zarazenBolescu, Osoba[] kontaktiraneOsobe) {
         this.ime = ime;
         this.prezime = prezime;
