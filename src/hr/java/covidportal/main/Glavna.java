@@ -302,7 +302,7 @@ public class Glavna {
                             continue;
                         }
 
-                        // Provjera postojanosti Odabrane Kontaktirane Osobe u Odabranim Kontaktiranim Osobama
+                        // Provjera postojanosti Odabrane Kontaktirane Osobe u prethodno Odabranim Kontaktiranim Osobama
 
                         for (int k = 0; k < odabraneKontaktiraneOsobe.length; ++k) {
                             if (odabraneKontaktiraneOsobe[k] == odabranaKontaktiranaOsoba) {
@@ -321,7 +321,7 @@ public class Glavna {
 
                     }
 
-                    // Spremanje Odabranih Kontaktiranih Osoba u polje
+                    // Spremanje Odabranih Kontaktiranih Osoba u polje Kontaktiranih Osoba
 
                     kontaktiraneOsobe = new Osoba[odabraneKontaktiraneOsobe.length];
 
@@ -332,6 +332,9 @@ public class Glavna {
                     kontaktiraneOsobe = null;
                 }
             }
+
+            // Spremanje osoba u polje osoba
+
             osobe[i] = new Osoba(ime, prezime, starost, zupanija, zarazenBolescu, kontaktiraneOsobe);
         }
     }
